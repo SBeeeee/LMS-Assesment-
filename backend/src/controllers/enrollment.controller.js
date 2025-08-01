@@ -5,6 +5,7 @@ export const fetchMyEnrollments = async (req, res) => {
       const enrolledCourseIds = await getEnrollmentsByStudent();
       res.json(enrolledCourseIds);
     } catch (err) {
+      console.log(err)
       res.status(500).json({ error: 'Failed to fetch enrollments' });
     }
   };

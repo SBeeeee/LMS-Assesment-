@@ -17,6 +17,19 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+  students: {
+    type: Number,
+    default: 0,
+  },
+  level: {
+    type: String,
+    enum: ["Beginner", "Intermediate", "Advanced"],
+    required: true,
+  },
 });
 
 export const Course = mongoose.model("Course", courseSchema);
