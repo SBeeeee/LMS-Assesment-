@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors"; // ✅ Import cors
+import cors from "cors";
 import { connectDB } from "./src/lib/database.js";
 import courserouter from './src/routes/course.routes.js';
 import enrollmentrouter from './src/routes/enrollment.routes.js';
@@ -9,9 +9,22 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Use CORS middleware with origin allowed
+// ✅ Allow multiple domains
+const allowedOrigins = [
+  process.env.local_url,
+  process.env.dev_url,
+];
+
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 
