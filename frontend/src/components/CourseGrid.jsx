@@ -111,7 +111,7 @@ const CourseGrid = () => {
                 }`}
                 disabled={isEnrolled}
               >
-                {isEnrolled ? 'Already Enrolled' : 'Enroll Now'}
+                {isEnrolled ? 'Enrolled' : 'Enroll Now'}
               </button>
             </div>
           );
