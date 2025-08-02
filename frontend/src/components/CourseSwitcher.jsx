@@ -49,7 +49,7 @@ const CourseSwitcher = () => {
     <div className="min-h-screen bg-slate-900 text-white px-6 py-6">
     
 
-      {/* Toolbar */}
+    
       <div className="flex justify-center mb-10">
         <div className="flex bg-slate-800 border border-slate-700 rounded-full p-1 shadow-inner">
           {["all", "enrolled"].map((tab) => (
@@ -68,7 +68,7 @@ const CourseSwitcher = () => {
         </div>
       </div>
 
-      {/* Grid */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {displayedCourses.map((course) => (
           <CourseCard
@@ -80,7 +80,7 @@ const CourseSwitcher = () => {
         ))}
       </div>
 
-      {/* Stats */}
+      
       <div className="mt-16 flex flex-wrap justify-center gap-6 text-white">
         <div className="bg-slate-800 px-6 py-4 rounded-xl shadow text-center border border-slate-700">
           <p className="text-3xl font-bold">{displayedCourses.length}</p>

@@ -31,7 +31,7 @@ const CourseCard = ({ course, isEnrolled, onEnroll }) => {
         </div>
       </div>
 
-      {/* Only show Enroll button if tab is 'all' */}
+ 
       {activeTab === 'all' && (
         <button
           onClick={() => !isEnrolled && onEnroll(course._id)}

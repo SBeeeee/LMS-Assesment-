@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav className="fixed w-full backdrop-blur-md bg-slate-800/95 border-b border-slate-700 z-50">
       <div className="h-14 px-4 flex justify-between items-center">
-        {/* Logo */}
+      
         <div className="flex items-center gap-2">
           <FaGraduationCap className="text-white text-xl" />
           <span className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
@@ -20,7 +20,7 @@ function Navbar() {
           </span>
         </div>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex gap-6 items-center">
           <Link href="/" className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300">
             <FaHome />
@@ -36,21 +36,21 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Right Side: Menu Icon (Mobile) + Avatar (Desktop only) */}
+       
         <div className="flex items-center gap-4">
-          {/* Mobile Menu Icon */}
+          
           <button onClick={toggleMenu} className="md:hidden text-white text-2xl">
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
 
-          {/* Avatar (Desktop only) */}
+        
           <div className="hidden md:flex w-8 h-8 bg-slate-600 rounded-full items-center justify-center text-sm text-white font-semibold">
             DS
           </div>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      
       {menuOpen && (
         <div className="md:hidden flex flex-col bg-slate-800 px-4 pb-4 animate-slide-down">
           <Link href="/" className="py-2 text-cyan-400 hover:text-cyan-300 border-b border-slate-700">
