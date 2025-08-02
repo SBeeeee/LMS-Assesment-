@@ -119,7 +119,10 @@ Start frontend:
 ```bash
 npm run dev
 ```
-
+Create a `.env` file:
+```env
+NEXT_PUBLIC_API_BASE_URL=your backend url
+```
 ---
 
 ## 🌐 API Endpoints
