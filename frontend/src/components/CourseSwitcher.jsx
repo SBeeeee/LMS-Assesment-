@@ -46,16 +46,8 @@ const CourseSwitcher = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white px-6 py-10">
-      {/* Heading */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-2 text-white">
-          🚀 Explore Courses
-        </h1>
-        <p className="text-slate-400 text-lg">
-          Learn new skills and grow your knowledge with our curated course list.
-        </p>
-      </div>
+    <div className="min-h-screen bg-slate-900 text-white px-6 py-6">
+    
 
       {/* Toolbar */}
       <div className="flex justify-center mb-10">
