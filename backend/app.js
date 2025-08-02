@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Allow multiple domains
+
 const allowedOrigins = [
   process.env.local_url,
   process.env.dev_url,
@@ -17,7 +17,7 @@ const allowedOrigins = [
 console.log("Allowed Origins at startup:", allowedOrigins);
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
+
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
