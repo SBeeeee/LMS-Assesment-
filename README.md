@@ -13,16 +13,16 @@ This is a simplified **Learning Management System** built using the **MERN Stack
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS, Redux Toolkit  
+- **Frontend**: Next.js, Tailwind CSS, Redux Toolkit  
 - **Backend**: Node.js, Express.js  
-- **Database**: MongoDB Atlas  
+- **Database**: MongoDB  
 - **Deployment**: Vercel (frontend), Render (backend)
 
 ---
 
 ## ✨ Features
 
-- 📚 View a list of available courses with details like title, instructor, and duration.
+- 📚 View a list of available courses with details like title, instructor, and duration along with difficulty and ratings.
 - ✅ Enrollment status is shown for each course.
 - 🔘 "Enroll" button is shown for courses not yet enrolled; enrolled ones display "Enrolled".
 - 🔁 Enrolling in a course sends a POST request to the backend and updates the UI accordingly.
@@ -39,7 +39,7 @@ This is a simplified **Learning Management System** built using the **MERN Stack
 
 ### Frontend (`/client`)
 ```
-📁 client
+📁 frontend
 ├── src
 │   ├── components
 │   │   └── CourseCard.tsx
@@ -67,7 +67,7 @@ This is a simplified **Learning Management System** built using the **MERN Stack
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/SBeeeee/lms-assessment.git
+git clone https://github.com/SBeeeee/LMS-Assesment-.git
 cd lms-assessment
 ```
 
@@ -87,14 +87,14 @@ PORT=5000
 
 Start backend:
 ```bash
-npm run dev
+npx nodemon app.js
 ```
 
 ---
 
 ### 3. Setup Frontend
 ```bash
-cd ../client
+cd ../frontend
 npm install
 ```
 
@@ -113,7 +113,7 @@ npm run dev
 ### GET `/api/enrollment/me`
 - Fetch enrolled courses of `dummyStudent123`
 
-### POST `/api/enrollment`
+### POST `/api/enrollment/create`
 - Enroll student in a course  
 - Request body:
 ```json
@@ -124,7 +124,7 @@ npm run dev
 
 ---
 
-## 🧠 What I Learned
+## 🧠 What I Experinced during the project development
 
 - 🔗 Integrated Redux Toolkit for global state management
 - 🧾 Used REST API concepts to connect frontend with backend
@@ -137,6 +137,7 @@ npm run dev
 
 - Faced CORS errors initially while trying to connect frontend and backend — fixed with proper `cors()` middleware configuration.
 - Managed state updates after enrollments to avoid re-fetching unnecessarily.
+- Used hooks to avoid repeatative api calls thereby reducing the loading time.
 - Deployment on Render required managing `build` and `start` commands carefully to avoid crashes.
 
 ---
