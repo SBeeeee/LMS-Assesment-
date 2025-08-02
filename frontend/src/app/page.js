@@ -2,13 +2,14 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import React from 'react'
 import CourseGrid from '@/components/CourseGrid'
+import CourseSwitcher from '@/components/CourseSwitcher'
 
 function page() {
   return (
     <div>
       <Navbar/>
       <Hero/>
-      <CourseGrid/>
+      <CourseSwitcher/>
     </div>
   )
 }

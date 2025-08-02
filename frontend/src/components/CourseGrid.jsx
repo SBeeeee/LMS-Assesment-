@@ -61,7 +61,7 @@ const CourseGrid = () => {
   const totalStudents = courses.reduce((acc, cur) => acc + cur.students, 0);
 
   return (
-    <div className="px-6 py-16 bg-slate-900 min-h-screen text-white">
+    <div className="px-6 py-4  bg-slate-900 min-h-screen text-white">
       {/* Heading */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-extrabold tracking-tight mb-2">Explore Our Top Courses</h1>
