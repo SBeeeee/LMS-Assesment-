@@ -14,7 +14,7 @@ const allowedOrigins = [
   process.env.local_url,
   process.env.dev_url,
 ];
-
+console.log("Allowed Origins at startup:", allowedOrigins);
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
