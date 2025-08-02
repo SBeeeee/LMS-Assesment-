@@ -7,7 +7,7 @@ This is a simplified **Learning Management System** built using the **MERN Stack
 ## 🚀 Live Demo
 
 - **Frontend (React.js)**: [https://lms-assesment.vercel.app](https://lms-assesment.vercel.app)  
-- **Backend API (Render)**: [https://lmsassessment.onrender.com](https://lmsassessment.onrender.com)
+- **Backend API (Render)**: [https://lmsassessment.onrender.com](https://lms-assesment.onrender.com/api)
   
 # ⚠️ Note on Deployment
 ⚡ The backend is hosted on Free Tier, which may take ~50 seconds to wake up after inactivity. Please wait if the first API call is slow.
@@ -43,25 +43,37 @@ This is a simplified **Learning Management System** built using the **MERN Stack
 ### Frontend (`/client`)
 ```
 📁 frontend
-├── src
-│   ├── components
-│   │   └── CourseCard.tsx
-│   ├── store
-│   │   ├── courses
-│   │   └── enrollments
-│   └── pages
-│       └── index.tsx
+📁 frontend
+├── 📁 .next
+├── 📁 node_modules
+├── 📁 public
+└── 📁 src
+   ├── 📁 app
+   ├── 📁 components
+   │   └── CourseCard.tsx
+   ├── 📁 hooks
+   ├── 📁 store
+   │   ├── 📁 courses
+   │   └── 📁 enrollments
+       └── 📁 users
 ```
 
 ### Backend (`/backend`)
 ```
 📁 backend
-├── src
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   └── lib
-│       └── database.js
+├── 📁 src
+│   ├── 📁 controllers
+│   ├── 📁 lib
+│   │   └── database.js
+│   ├── 📁 middleware
+│   ├── 📁 models
+│   ├── 📁 routes
+│   └── 📁 services
+├── .env
+├── app.js
+├── seed.js
+├── package.json
+└── package-lock.json
 ```
 
 ---
@@ -86,6 +98,8 @@ Create a `.env` file:
 ```env
 MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/lms
 PORT=5000
+local_url=your local url
+dev_url=your deplyed frontend link
 ```
 
 Start backend:
