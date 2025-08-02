@@ -56,7 +56,7 @@ const CourseSwitcher = () => {
             <button
               key={tab}
               onClick={() => dispatch(setTab(tab))}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all hover:cursor-pointer duration-300 ${
                 activeTab === tab
                   ? "bg-blue-600 text-white shadow-md"
                   : "text-slate-300 hover:bg-slate-700"

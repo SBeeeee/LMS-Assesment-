@@ -35,7 +35,7 @@ const CourseCard = ({ course, isEnrolled, onEnroll }) => {
       {activeTab === 'all' && (
         <button
           onClick={() => !isEnrolled && onEnroll(course._id)}
-          className={`mt-4 w-full py-2 rounded-lg font-medium transition ${
+          className={`mt-4 w-full py-2 rounded-lg font-medium transition hover:cursor-pointer ${
             isEnrolled
               ? "bg-gray-600 text-white cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700 text-white"
