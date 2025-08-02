@@ -48,7 +48,7 @@ const CourseGrid = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+      <div className="min-h-screen flex  mt-14 justify-center bg-slate-900">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
       </div>
     );
