@@ -1,8 +1,12 @@
-// components/CourseCard.tsx
+"use client";
+
 import React from "react";
+import { useSelector } from "react-redux";
 import { FaStar, FaUser, FaClock } from "react-icons/fa";
 
 const CourseCard = ({ course, isEnrolled, onEnroll }) => {
+  const activeTab = useSelector((state) => state.course.activeTab);
+
   return (
     <div className="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition duration-300 border border-slate-700 flex flex-col justify-between h-full">
       <div>
@@ -27,17 +31,20 @@ const CourseCard = ({ course, isEnrolled, onEnroll }) => {
         </div>
       </div>
 
-      <button
-        onClick={() => !isEnrolled && onEnroll(course._id)}
-        className={`mt-4 w-full py-2 rounded-lg font-medium transition ${
-          isEnrolled
-            ? "bg-gray-600 text-white cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700 text-white"
-        }`}
-        disabled={isEnrolled}
-      >
-        {isEnrolled ? "Enrolled" : "Enroll Now"}
-      </button>
+      {/* Only show Enroll button if tab is 'all' */}
+      {activeTab === 'all' && (
+        <button
+          onClick={() => !isEnrolled && onEnroll(course._id)}
+          className={`mt-4 w-full py-2 rounded-lg font-medium transition ${
+            isEnrolled
+              ? "bg-gray-600 text-white cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
+          disabled={isEnrolled}
+        >
+          {isEnrolled ? "Enrolled" : "Enroll Now"}
+        </button>
+      )}
     </div>
   );
 };
