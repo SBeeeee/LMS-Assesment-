@@ -2,7 +2,7 @@ import axiosInstance from "@/utils/axiosInstance"
 
 export const getAllCourses =async()=>{
 try{
-    const res=await axiosInstance.get('/courses');
+    const res=await axiosInstance.get('/courses/');
     return res.data;
 }
 catch(error){

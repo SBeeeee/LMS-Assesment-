@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/utils/Providers";
 
 
 
@@ -11,9 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Providers>
       <body className="bg-slate-900">
         {children}
       </body>
+      </Providers>
     </html>
   );
 }
