@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import React from 'react'
 import Heading from '@/components/Heading'
 import CourseSwitcher from '@/components/CourseSwitcher'
+import Footer from '@/components/Footer'
 
 function page() {
   return (
@@ -11,6 +12,7 @@ function page() {
       <Hero/>
       <Heading/>
       <CourseSwitcher/>
+      <Footer/>
     </div>
   )
 }
