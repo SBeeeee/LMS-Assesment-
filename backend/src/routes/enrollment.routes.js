@@ -1,9 +1,13 @@
 import express from 'express';
-import { fetchMyEnrollments,enrollInCourse } from '../controllers/enrollment.controller.js';
+import { fetchMyEnrollments,enrollInCourse,fetchStudentsInCourse,fetchAllEnrollments } from '../controllers/enrollment.controller.js';
+import { authenticateToken } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-router.get('/me', fetchMyEnrollments);
-router.post('/create', enrollInCourse);
+router.get('/my-enrollments', authenticateToken, fetchMyEnrollments);
+router.post('/', authenticateToken, enrollInCourse);
+router.get('/course/:courseId/students', authenticateToken, fetchStudentsInCourse);
+router.get('/all', authenticateToken, fetchAllEnrollments);
+
 
 export default router;

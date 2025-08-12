@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    studentId: 'dummyStudent123', 
+    user:{}, 
     loading:false,
   };
 

@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const enrollmentSchema = new mongoose.Schema({
   studentId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   courseId: {
@@ -14,6 +15,13 @@ const enrollmentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  status: {
+    type: String,
+    enum: ["Active", "Completed", "Dropped"],
+    default: "Active",
+  }
 });
+
+enrollmentSchema.index({ studentId: 1, courseId: 1 }, { unique: true });
 
 export const Enrollment = mongoose.model("Enrollment", enrollmentSchema);

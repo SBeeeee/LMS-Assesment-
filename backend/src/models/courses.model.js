@@ -10,7 +10,8 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   instructor: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", 
     required: true,
   },
   duration: {
@@ -30,6 +31,23 @@ const courseSchema = new mongoose.Schema({
     enum: ["Beginner", "Intermediate", "Advanced"],
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["Pending", "Approved", "Rejected"],
+    default: "Pending",
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  approvedAt: {
+    type: Date,
+  },
+  approvedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }
 });
 
 export const Course = mongoose.model("Course", courseSchema);

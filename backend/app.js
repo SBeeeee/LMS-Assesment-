@@ -4,6 +4,8 @@ import cors from "cors";
 import { connectDB } from "./src/lib/database.js";
 import courserouter from './src/routes/course.routes.js';
 import enrollmentrouter from './src/routes/enrollment.routes.js';
+import userrouter from './src/routes/user.routes.js';
+import authrouter from './src/routes/auth.routes.js';
 
 dotenv.config();
 
@@ -32,6 +34,8 @@ app.use(express.json({ limit: "10mb" }));
 
 app.use('/api/enrollment', enrollmentrouter);
 app.use('/api/courses', courserouter);
+app.use('/api/users', userrouter);
+app.use('/api/auth', authrouter);
 
 const PORT = process.env.PORT || 5000;
 
