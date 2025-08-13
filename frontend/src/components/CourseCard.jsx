@@ -23,7 +23,7 @@ const CourseCard = ({ course, isEnrolled, onEnroll }) => {
 
         <div className="text-sm text-slate-300 space-y-2 mb-4">
           <div className="flex items-center gap-2">
-            <FaUser className="text-slate-400" /> {course.instructor}
+            <FaUser className="text-slate-400" /> {course.instructor?.name || "Unknown"}
           </div>
           <div className="flex items-center gap-2">
             <FaClock className="text-slate-400" /> {course.duration}

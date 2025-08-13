@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "@/utils/checkAuth";
 import PrivateRoute from "@/utils/Private";
+import CourseSwitcher from "@/components/CourseSwitcher";
 
 export default function DashboardPage() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ console.log(user)
         ) : (
           <p>Loading user details...</p>
         )}
+        <CourseSwitcher/>
       </div>
     </PrivateRoute>
   );

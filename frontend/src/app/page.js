@@ -13,7 +13,6 @@ function page() {
     <div>
       <Hero/>
       <Heading/>
-      <CourseSwitcher/>
     </div>
   )
 }

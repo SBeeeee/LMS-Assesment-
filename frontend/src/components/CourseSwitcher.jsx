@@ -3,7 +3,7 @@ import React from "react";
 import useCourseData from "@/hooks/useCourseData";
 import CourseCard from "./CourseCard";
 import { useDispatch, useSelector } from "react-redux";
-import { createenroll, mycourses } from "./api";
+import { enrollInCourse,getMyEnrollments } from "./api";
 import { setEnrolledCourses } from "@/store/enrollments/slice";
 import { setLoading } from "@/store/user/slice";
 import { setTab } from "@/store/courses/slice";
@@ -11,17 +11,16 @@ import { setTab } from "@/store/courses/slice";
 const CourseSwitcher = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector((state) => state.course.activeTab);
-
   const { courses, enrolledCourses, loading } = useCourseData();
 
   const handleEnroll = async (courseId) => {
     try {
       dispatch(setLoading(true));
-      await createenroll(courseId);
-      const updated = await mycourses();
-      dispatch(setEnrolledCourses(updated));
+      await enrollInCourse(courseId);
+      const updated = await getMyEnrollments();
+      dispatch(setEnrolledCourses(updated.map(e => e.course._id)));
     } catch (err) {
-      console.error("Enrollment failed:", err);
+      console.error("Enrollment failed:", err)
     } finally {
       dispatch(setLoading(false));
     }
@@ -33,7 +32,7 @@ const CourseSwitcher = () => {
       : courses.filter((course) => enrolledCourses.includes(course._id));
 
   const totalStudents = displayedCourses.reduce(
-    (acc, cur) => acc + cur.students,
+    (acc, cur) => acc + (cur.students || 0),
     0
   );
 
@@ -47,16 +46,14 @@ const CourseSwitcher = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white px-6 py-6">
-    
-
-    
+      {/* Tabs */}
       <div className="flex justify-center mb-10">
         <div className="flex bg-slate-800 border border-slate-700 rounded-full p-1 shadow-inner">
           {["all", "enrolled"].map((tab) => (
             <button
               key={tab}
               onClick={() => dispatch(setTab(tab))}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all hover:cursor-pointer duration-300 ${
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeTab === tab
                   ? "bg-blue-600 text-white shadow-md"
                   : "text-slate-300 hover:bg-slate-700"
@@ -68,7 +65,7 @@ const CourseSwitcher = () => {
         </div>
       </div>
 
-      
+      {/* Courses */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {displayedCourses.map((course) => (
           <CourseCard
@@ -80,8 +77,8 @@ const CourseSwitcher = () => {
         ))}
       </div>
 
-      
-      <div className="mt-16 flex flex-wrap justify-center gap-6 text-white">
+      {/* Stats */}
+      <div className="mt-16 flex flex-wrap justify-center gap-6">
         <div className="bg-slate-800 px-6 py-4 rounded-xl shadow text-center border border-slate-700">
           <p className="text-3xl font-bold">{displayedCourses.length}</p>
           <p className="text-slate-400 text-sm mt-1">

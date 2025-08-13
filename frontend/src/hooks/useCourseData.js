@@ -1,39 +1,41 @@
-
 "use client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses,mycourses } from "@/components/api";
-import { setCourses } from "@/store/courses/slice";
+import { getMyEnrollments,getCourses } from "@/components/api";// ✅ correct path
+import { setCourses, setTab } from "@/store/courses/slice";
 import { setEnrolledCourses } from "@/store/enrollments/slice";
-import { setLoading } from "@/store/user/slice";
+import { setLoading, setError } from "@/store/user/slice";
 
-const useCourseData = () => {
+export default function useCourseData() {
   const dispatch = useDispatch();
   const { courses } = useSelector((state) => state.course);
   const { enrolledCourses } = useSelector((state) => state.enroll);
-  const { loading } = useSelector((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const fetchCoursesAndEnrollments = async () => {
+    const fetchData = async () => {
       try {
         dispatch(setLoading(true));
-        const [allCourses, enrolledIds] = await Promise.all([
-          getAllCourses(),
-          mycourses(),
+        dispatch(setError(null));
+
+        const [allCourses, enrolled] = await Promise.all([
+          getCourses(),
+          getMyEnrollments(),
         ]);
+
         dispatch(setCourses(allCourses));
-        dispatch(setEnrolledCourses(enrolledIds));
+        dispatch(setEnrolledCourses(enrolled.map(e => e._id)));
+        dispatch(setTab("all")); // default view
       } catch (err) {
-        console.error("Error loading course data:", err);
+        console.error("Failed to fetch course data:", err);
+        dispatch(setError("Failed to load courses. Please try again later."));
       } finally {
         dispatch(setLoading(false));
       }
     };
 
-    fetchCoursesAndEnrollments();
+    fetchData();
   }, [dispatch]);
 
-  return { courses, enrolledCourses, loading };
-};
-
-export default useCourseData;
+  return { courses, enrolledCourses, loading, error };
+}

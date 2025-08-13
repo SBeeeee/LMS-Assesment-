@@ -1,37 +1,44 @@
 import axiosInstance from "@/utils/axiosInstance";
-import { setUser } from "@/store/user/slice";
 
-
-export const getAllCourses = async () => {
-  try {
-    const res = await axiosInstance.get('/courses/');
-    return res.data.data; // updated
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+export const getCourses = async () => {
+  const res = await axiosInstance.get("/courses");
+  return res.data.data;
 };
 
-export const createenroll = async (courseId) => {
-  try {
-    const res = await axiosInstance.post("/enrollment/create", { courseId });
-    return res.data.data; // updated
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+export const createCourse = async (courseData) => {
+  const res = await axiosInstance.post("/courses", courseData);
+  return res.data.data;
 };
 
-export const mycourses = async () => {
-  try {
-    const res = await axiosInstance.get("/enrollment/me");
-    return res.data.data; // updated
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+export const updateCourse = async (courseId, courseData) => {
+  const res = await axiosInstance.put(`/courses/${courseId}`, courseData);
+  return res.data.data;
 };
 
+export const updateCourseStatus = async (courseId, status) => {
+  const res = await axiosInstance.patch(`/courses/${courseId}/status`, { status });
+  return res.data.data;
+};
+
+export const getMyEnrollments = async () => {
+  const res = await axiosInstance.get("/enrollment/my-enrollments");
+  return res.data.data;
+};
+
+export const enrollInCourse = async (courseId) => {
+  const res = await axiosInstance.post("/enrollment", { courseId });
+  return res.data.data;
+};
+
+export const getStudentsInCourse = async (courseId) => {
+  const res = await axiosInstance.get(`/enrollment/course/${courseId}/students`);
+  return res.data.data;
+};
+
+export const getAllEnrollments = async () => {
+  const res = await axiosInstance.get("/enrollment/all");
+  return res.data.data;
+};
 
 export const logout = async (dispatch, router) => {
   try {
