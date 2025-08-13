@@ -15,6 +15,7 @@ export default function AvatarMenu() {
 
   useEffect(() => {
     checkAuth(dispatch);
+    console.log(user)
   }, [dispatch]);
 
   // Close dropdown when clicking outside
@@ -54,7 +55,7 @@ export default function AvatarMenu() {
       {/* Dropdown Menu */}
       {dropdownOpen && (
         <div className="absolute right-0 mt-2 w-44 bg-slate-800 border border-slate-700 rounded-lg shadow-lg overflow-hidden">
-          {(user===null || user=={}) ? (
+          {(user!={}) ? (
             <>
               <button
                 onClick={() => {

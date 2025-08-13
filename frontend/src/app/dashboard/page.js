@@ -10,7 +10,7 @@ export default function DashboardPage() {
 console.log(user)
   return (
     <PrivateRoute>
-      <div className="min-h-screen bg-slate-900 text-white p-10">
+      <div className="min-h-screen bg-slate-900 pt-16 text-white ">
         <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
         {user && Object.keys(user).length > 0 ? (

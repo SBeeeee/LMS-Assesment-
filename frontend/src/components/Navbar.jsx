@@ -11,7 +11,7 @@ function Navbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className="fixed w-full backdrop-blur-md bg-slate-800/95 border-b border-slate-700 z-50">
+    <nav className="fixed top-0 h-14 w-full backdrop-blur-md bg-slate-800/95 border-b border-slate-700 z-50">
       <div className="h-14 px-4 flex justify-between items-center">
       
         <div className="flex items-center gap-2">
