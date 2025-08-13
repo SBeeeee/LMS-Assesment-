@@ -12,7 +12,7 @@ function page() {
   return (
     <div>
       <Hero/>
-      <Heading/>
+     
     </div>
   )
 }
