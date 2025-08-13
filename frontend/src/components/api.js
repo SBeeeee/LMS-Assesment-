@@ -1,4 +1,6 @@
 import axiosInstance from "@/utils/axiosInstance";
+import { setUser } from "@/store/user/slice";
+
 
 export const getAllCourses = async () => {
   try {
@@ -27,5 +29,26 @@ export const mycourses = async () => {
   } catch (error) {
     console.error(error);
     throw error;
+  }
+};
+
+
+export const logout = async (dispatch, router) => {
+  try {
+    // Call backend logout API (this will invalidate token server-side if implemented)
+    await axiosInstance.post("/auth/logout");
+
+  } catch (error) {
+    console.error("Error calling logout API:", error);
+    // Even if API fails, proceed with client logout
+  } finally {
+    // Remove token locally
+    localStorage.removeItem("token");
+
+    // Clear Redux user
+    dispatch(setUser(null));
+
+    // Redirect to login
+    router.push("/");
   }
 };

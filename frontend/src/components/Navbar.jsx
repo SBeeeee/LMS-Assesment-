@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FaGraduationCap, FaHome, FaBookOpen, FaUserFriends } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
+import AvatarMenu from "./AvatarMenu";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +46,7 @@ function Navbar() {
 
         
           <div className="hidden md:flex w-8 h-8 bg-slate-600 rounded-full items-center justify-center text-sm text-white font-semibold">
-            DS
+            <AvatarMenu/>
           </div>
         </div>
       </div>
