@@ -12,7 +12,7 @@ export default function DashboardPage() {
   return (
     <PrivateRoute>
       <div className="min-h-screen bg-slate-900 pt-16 px-4 text-white">
-        <h1 className="text-3xl font-bold mb-8 text-center">Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center">Student Dashboard</h1>
 
         {/* User Detail Cards */}
         {user && Object.keys(user).length > 0 ? (
