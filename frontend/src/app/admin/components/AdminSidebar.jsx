@@ -18,7 +18,7 @@ const AdminSidebar = ({ activeTab, setActiveTab, onLogout }) => {
             <button
               key={item.key}
               onClick={() => setActiveTab(item.key)}
-              className={`flex items-center gap-3 px-6 py-3 w-full text-left hover:bg-slate-800 transition-colors ${
+              className={`flex hover:cursor-pointer items-center gap-3 px-6 py-3 w-full text-left hover:bg-slate-800 transition-colors ${
                 activeTab === item.key ? "bg-slate-800 text-blue-400" : ""
               }`}
             >
@@ -31,7 +31,7 @@ const AdminSidebar = ({ activeTab, setActiveTab, onLogout }) => {
       <div className="p-4 border-t border-slate-700">
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 px-4 py-2 w-full text-left hover:bg-red-600 rounded transition-colors"
+          className="flex items-center gap-3 px-4 py-2 w-full text-left hover:cursor-pointer hover:bg-red-600 rounded transition-colors"
         >
           <FaSignOutAlt />
           <span>Logout</span>

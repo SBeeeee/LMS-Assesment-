@@ -68,9 +68,8 @@ export default function CoursesTable() {
                   <select
                     value={course.status}
                     onChange={(e) => handleStatusChange(course._id, e.target.value)}
-                    className="bg-slate-700 p-2 rounded"
+                    className="bg-slate-700 hover:cursor-pointer  p-2 rounded"
                   >
-                    <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
                   </select>
@@ -78,19 +77,19 @@ export default function CoursesTable() {
                 <td className="p-4 flex gap-2">
                   <button
                     onClick={() => handleStatusChange(course._id, "Approved")}
-                    className="bg-green-600 px-3 py-1 rounded hover:bg-green-500"
+                    className="bg-green-600 px-3 py-1 hover:cursor-pointer  rounded hover:bg-green-500"
                   >
                     Approve
                   </button>
                   <button
                     onClick={() => handleStatusChange(course._id, "Rejected")}
-                    className="bg-yellow-600 px-3 py-1 rounded hover:bg-yellow-500"
+                    className="bg-yellow-600 px-3 py-1 hover:cursor-pointer  rounded hover:bg-yellow-500"
                   >
                     Reject
                   </button>
                   <button
                     onClick={() => handleDelete(course._id)}
-                    className="bg-red-600 px-3 py-1 rounded hover:bg-red-500"
+                    className="bg-red-600 px-3 py-1 hover:cursor-pointer  rounded hover:bg-red-500"
                   >
                     Delete
                   </button>

@@ -10,10 +10,16 @@ import UsersTable from "./components/UsersTable";
 import CoursesTable from "./components/CoursesTable";
 import EnrollmentsTable from "./components/EnrollmentsTable";
 import PrivateRoute from "@/utils/Private";
+import { logout } from "@/components/api";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [stats, setStats] = useState([]);
+  const dispatch = useDispatch();
+const router = useRouter();
   const { user } = useSelector((state) => state.user);
   useEffect(() => {
     const loadStats = async () => {
@@ -46,7 +52,7 @@ export default function AdminPage() {
   return (
     <PrivateRoute>
     <div className="flex">
-      <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={() => console.log("Logout")} />
+      <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={() => logout(dispatch,router)} />
       <div className="flex-1 bg-slate-900 text-white p-6">
         {activeTab === "dashboard" && (
           <>

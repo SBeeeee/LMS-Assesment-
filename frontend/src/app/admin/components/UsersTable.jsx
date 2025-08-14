@@ -69,7 +69,7 @@ export default function UsersTable() {
                   <select
                     value={user.role}
                     onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                    className="bg-slate-700 p-2 rounded"
+                    className="bg-slate-700 p-2 hover:cursor-pointer  rounded"
                   >
                     <option value="Admin">Admin</option>
                     <option value="Instructor">Instructor</option>
@@ -79,7 +79,7 @@ export default function UsersTable() {
                 <td className="p-4 flex gap-3">
                   <button
                     onClick={() => handleDelete(user._id)}
-                    className="bg-red-600 p-2 rounded hover:bg-red-500"
+                    className="bg-red-600 hover:cursor-pointer p-2 rounded hover:bg-red-500"
                   >
                     <FaTrash />
                   </button>

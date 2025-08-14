@@ -17,7 +17,7 @@ function Navbar() {
         <div className="flex items-center gap-2">
           <FaGraduationCap className="text-white text-xl" />
           <span className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-            SkillHub
+           <Link href="/"> SkillHub</Link>
           </span>
         </div>
 
