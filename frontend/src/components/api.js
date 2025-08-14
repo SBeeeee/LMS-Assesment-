@@ -53,7 +53,7 @@ export const logout = async (dispatch, router) => {
     localStorage.removeItem("token");
 
     // Clear Redux user
-    d
+    
 
     // Redirect to login
     router.push("/");

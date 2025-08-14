@@ -18,7 +18,8 @@ const CourseSwitcher = () => {
       dispatch(setLoading(true));
       await enrollInCourse(courseId);
       const updated = await getMyEnrollments();
-      dispatch(setEnrolledCourses(updated.map(e => e.course._id)));
+      console.log("📦 getMyEnrollments() response:", updated);
+      dispatch(setEnrolledCourses(updated.map(e => e._id)));
     } catch (err) {
       console.error("Enrollment failed:", err)
     } finally {
