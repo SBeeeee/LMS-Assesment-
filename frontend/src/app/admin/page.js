@@ -50,6 +50,22 @@ export default function AdminPage() {
           <>
             <h1 className="text-3xl font-bold mb-6 pt-16">Dashboard Overview</h1>
             <CardSection stats={stats} />
+            {user && Object.keys(user).length > 0 && (
+  <div className="bg-slate-800 p-6 rounded-2xl shadow-xl mb-6 max-w-4xl mx-auto">
+    <h2 className="text-2xl font-bold mb-2">Welcome, {user.name}!</h2>
+    <p className="text-slate-300 mb-4">
+      Email: {user.email} | Role: {user.role} | Joined: {new Date(user.createdAt).toLocaleDateString()}
+    </p>
+
+    {/* Professional paragraph */}
+    <p className="text-slate-300">
+      As an admin, you have full access to manage users, approve or reject courses,
+      and oversee all enrollments. Monitor platform activity and ensure the smooth
+      operation of all educational resources, keeping quality and compliance at the forefront.
+    </p>
+  </div>
+)}
+
           </>
         )}
         {activeTab === "users" && (
