@@ -1,5 +1,5 @@
 import axiosInstance from "@/utils/axiosInstance";
-
+import { setUser } from "@/store/user/slice";
 export const getCourses = async () => {
   const res = await axiosInstance.get("/courses");
   return res.data.data;
@@ -53,7 +53,7 @@ export const logout = async (dispatch, router) => {
     localStorage.removeItem("token");
 
     // Clear Redux user
-    
+    dispatch(setUser(null));
 
     // Redirect to login
     router.push("/");

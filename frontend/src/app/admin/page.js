@@ -9,6 +9,7 @@ import { User } from "lucide-react";
 import UsersTable from "./components/UsersTable";
 import CoursesTable from "./components/CoursesTable";
 import EnrollmentsTable from "./components/EnrollmentsTable";
+import PrivateRoute from "@/utils/Private";
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -43,6 +44,7 @@ export default function AdminPage() {
     );
   }
   return (
+    <PrivateRoute>
     <div className="flex">
       <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={() => console.log("Logout")} />
       <div className="flex-1 bg-slate-900 text-white p-6">
@@ -88,5 +90,6 @@ export default function AdminPage() {
         )}
       </div>
     </div>
+    </PrivateRoute>
   );
 }
