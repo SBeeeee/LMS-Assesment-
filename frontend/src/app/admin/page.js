@@ -4,6 +4,10 @@ import AdminSidebar from "./components/AdminSidebar";
 import CardSection from "./components/Card";
 import { FaUsers, FaBookOpen, FaClipboardList, FaHourglassHalf } from "react-icons/fa";
 import { fetchAllCourses,fetchAllEnrollments,fetchAllUsers } from "./components/api";
+import { User } from "lucide-react";
+import UsersTable from "./components/UsersTable";
+import CoursesTable from "./components/CoursesTable";
+import EnrollmentsTable from "./components/EnrollmentsTable";
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -41,19 +45,19 @@ export default function AdminPage() {
         {activeTab === "users" && (
           <div>
             <h1 className="text-3xl font-bold mb-6 pt-16">Manage Users</h1>
-            {/* Users Table Component will go here */}
+            <UsersTable/>
           </div>
         )}
         {activeTab === "courses" && (
           <div>
             <h1 className="text-3xl font-bold mb-6 pt-16">Manage Courses</h1>
-            {/* Courses Table Component will go here */}
+<CoursesTable/>
           </div>
         )}
         {activeTab === "enrollments" && (
           <div>
             <h1 className="text-3xl font-bold mb-6 pt-16">All Enrollments</h1>
-            {/* Enrollments Table Component will go here */}
+            <EnrollmentsTable/>
           </div>
         )}
       </div>
