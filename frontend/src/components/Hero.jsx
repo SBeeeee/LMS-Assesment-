@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function Hero() {
   return (
@@ -14,12 +15,16 @@ function Hero() {
 
       {/* CTA Buttons */}
       <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-        <button className="px-10 py-3 rounded-full border-2 border-slate-700 bg-slate-800 text-slate-100 font-semibold shadow-md hover:bg-slate-700 hover:border-slate-500 transition duration-300">
-          Login
-        </button>
-        <button className="px-10 py-3 rounded-full border-2 border-slate-700 bg-slate-800 text-slate-100 font-semibold shadow-md hover:bg-slate-700 hover:border-slate-500 transition duration-300">
-          View Courses
-        </button>
+        <Link href="/auth/login">
+          <button className="px-10  hover:cursor-pointer py-3 rounded-full border-2 border-slate-700 bg-slate-800 text-slate-100 font-semibold shadow-md hover:bg-slate-700 hover:border-slate-500 transition duration-300">
+            Login
+          </button>
+        </Link>
+        <Link href="/dashboard">
+          <button className="px-10 hover:cursor-pointer py-3 rounded-full border-2 border-slate-700 bg-slate-800 text-slate-100 font-semibold shadow-md hover:bg-slate-700 hover:border-slate-500 transition duration-300">
+            View Courses
+          </button>
+        </Link>
       </div>
 
       {/* Additional Content */}
