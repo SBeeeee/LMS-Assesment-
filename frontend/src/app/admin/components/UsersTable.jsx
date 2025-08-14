@@ -49,9 +49,9 @@ export default function UsersTable() {
   }
 
   return (
-    <div className="overflow-x-auto bg-slate-800 rounded-xl shadow border border-slate-700">
+    <div className="overflow-x-auto overflow-y-auto max-h-96 bg-slate-800 rounded-xl shadow border border-slate-700">
       <table className="w-full text-left text-white">
-        <thead className="bg-slate-700">
+        <thead className="bg-slate-700 sticky top-0">
           <tr>
             <th className="p-4">Name</th>
             <th className="p-4">Email</th>
