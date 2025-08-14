@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import AdminSidebar from "./components/AdminSidebar";
+import { useSelector } from "react-redux";
 import CardSection from "./components/Card";
 import { FaUsers, FaBookOpen, FaClipboardList, FaHourglassHalf } from "react-icons/fa";
 import { fetchAllCourses,fetchAllEnrollments,fetchAllUsers } from "./components/api";
@@ -12,7 +13,7 @@ import EnrollmentsTable from "./components/EnrollmentsTable";
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [stats, setStats] = useState([]);
-
+  const { user } = useSelector((state) => state.user);
   useEffect(() => {
     const loadStats = async () => {
       const users = await fetchAllUsers();
@@ -31,7 +32,16 @@ export default function AdminPage() {
 
     loadStats();
   }, []);
-
+  if (user && user.role !== "Admin") {
+    return (
+      <div className="min-h-screen bg-slate-900 pt-16 px-4 text-white flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+        <p className="text-slate-300 text-center max-w-md">
+          You do not have permission to access the Admin Dashboard.
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="flex">
       <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={() => console.log("Logout")} />

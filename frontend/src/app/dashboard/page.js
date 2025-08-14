@@ -8,6 +8,17 @@ import Link from "next/link";
 
 export default function DashboardPage() {
   const { user } = useSelector((state) => state.user);
+  if (user && user.role !== "Student") {
+    return (
+      <div className="min-h-screen bg-slate-900 pt-16 px-4 text-white flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+        <p className="text-slate-300 text-center max-w-md">
+          You do not have permission to access this page Login as A Student please...
+        </p>
+      </div>
+    );
+  }
+
 
   return (
     <PrivateRoute>

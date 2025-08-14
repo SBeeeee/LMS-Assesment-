@@ -87,7 +87,7 @@ export default function AvatarMenu() {
 
           <button
             onClick={() => {
-              router.push("/login");
+              router.push("/auth/login");
               setDropdownOpen(false);
             }}
             className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-slate-700"
@@ -97,7 +97,7 @@ export default function AvatarMenu() {
 
           <button
             onClick={() => {
-              router.push("/signup");
+              router.push("auth/signup");
               setDropdownOpen(false);
             }}
             className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-slate-700"

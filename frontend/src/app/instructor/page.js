@@ -1,13 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import PrivateRoute from "@/utils/Private";
-import { getInstructorCourses, getStudentsInCourse,createCourse} from "./components/api";
+import { getInstructorCourses, getStudentsInCourse, createCourse } from "./components/api";
 import InstructorStats from "./components/InstructorStats";
 import CourseList from "./components/CourseList";
 import StudentListModal from "./components/StudentListModal";
 import CreateCourseModal from "./components/CreateCourseModal";
+import { FaUser, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
 
 export default function InstructorDashboard() {
+  const { user } = useSelector((state) => state.user);
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
   const [showStudentModal, setShowStudentModal] = useState(false);
@@ -38,9 +41,23 @@ export default function InstructorDashboard() {
     0
   );
 
+  // Role check: Only Instructor can access
+  if (user && user.role !== "Instructor") {
+    return (
+      <div className="min-h-screen bg-slate-900 pt-16 px-6 text-white flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+        <p className="text-slate-300 text-center max-w-md">
+          You do not have permission to access the Instructor Dashboard.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <PrivateRoute>
+      
       <div className="min-h-screen bg-slate-900 text-white pt-16 px-6">
+        {/* Welcome Section */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">Instructor Dashboard</h1>
           <button
@@ -51,6 +68,21 @@ export default function InstructorDashboard() {
           </button>
         </div>
 
+        {user && (
+          <div className="bg-slate-800 p-6 rounded-2xl shadow-xl mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-bold">Welcome, {user.name}!</h2>
+              <p className="text-slate-300 flex items-center gap-2">
+                <FaEnvelope /> {user.email}
+              </p>
+              <p className="text-slate-300 flex items-center gap-2">
+                <FaCalendarAlt /> Joined {new Date(user.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+        )}
+
+      
         <InstructorStats
           totalCourses={courses.length}
           totalStudents={totalStudents}

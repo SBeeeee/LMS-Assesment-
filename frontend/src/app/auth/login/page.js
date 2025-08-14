@@ -24,13 +24,17 @@ export default function Login() {
 
       if (!data.success) throw new Error(data.message || "Login failed");
 
-      // ✅ Store token for future requests
+      // ✅ Store token
       localStorage.setItem("token", data.data.token);
 
-      // ✅ Store user directly (not nested)
-    
+      // ✅ Store user in Redux
+      dispatch(setUser(data.data.user));
 
-      router.push("/dashboard"); 
+      // ✅ Role-based redirection
+      const role = data.data.user.role.toLowerCase();
+      if (role === "admin") router.push("/admin");
+      else if (role === "instructor") router.push("/instructor");
+      else router.push("/dashboard"); // student
     } catch (err) {
       dispatch(setError(err.message));
     } finally {
