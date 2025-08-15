@@ -110,16 +110,16 @@ export const fetchAllUsers = async (req, res) => {
       if (!user) return res.status(404).json({ success: false, message: "User not found" });
   
       if (user.role === 'Student') {
-        await Enrollment.deleteMany({ student: userId });
+        await Enrollment.deleteMany({ studentId: userId });
       }
-  
+      
       if (user.role === 'Instructor') {
         const courses = await Course.find({ instructor: userId });
         const courseIds = courses.map(c => c._id);
-        await Enrollment.deleteMany({ course: { $in: courseIds } });
+        await Enrollment.deleteMany({ courseId: { $in: courseIds } });
         await Course.deleteMany({ instructor: userId });
       }
-  
+      
       await User.findByIdAndDelete(userId);
   
       res.status(200).json({ success: true, message: "User and related data deleted successfully" });
