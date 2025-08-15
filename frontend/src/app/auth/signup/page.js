@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, setError, setLoading } from "@/store/user/slice";
+import { useRouter } from "next/navigation"; 
 
 export default function Signup() {
+  const router=useRouter();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
 
