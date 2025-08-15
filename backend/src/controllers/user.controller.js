@@ -1,8 +1,8 @@
 import { getAllUsers,getUsersByRole,getUserById,updateUserRole } from "../services/user.service.js";
 
-import { User } from '../models/user.model.js';
-import { Course } from '../models/course.model.js';
-import { Enrollment } from '../models/enrollment.model.js';
+import { User } from "../models/user.model.js";
+import { Course } from "../models/courses.model.js";
+import { Enrollment } from "../models/enrollment.model.js";
 
 export const fetchAllUsers = async (req, res) => {
     try {
