@@ -1,5 +1,9 @@
 import { getAllUsers,getUsersByRole,getUserById,updateUserRole } from "../services/user.service.js";
 
+import { User } from '../models/user.model.js';
+import { Course } from '../models/course.model.js';
+import { Enrollment } from '../models/enrollment.model.js';
+
 export const fetchAllUsers = async (req, res) => {
     try {
       const { role } = req.user;
@@ -90,4 +94,38 @@ export const fetchAllUsers = async (req, res) => {
       });
     }
   };
+
+
+  
+  export const deleteUserController = async (req, res) => {
+    try {
+      const { role } = req.user;
+      const { userId } = req.params;
+  
+      if (role !== 'Admin') {
+        return res.status(403).json({ success: false, message: "Only admins can delete users" });
+      }
+  
+      const user = await User.findById(userId);
+      if (!user) return res.status(404).json({ success: false, message: "User not found" });
+  
+      if (user.role === 'Student') {
+        await Enrollment.deleteMany({ student: userId });
+      }
+  
+      if (user.role === 'Instructor') {
+        const courses = await Course.find({ instructor: userId });
+        const courseIds = courses.map(c => c._id);
+        await Enrollment.deleteMany({ course: { $in: courseIds } });
+        await Course.deleteMany({ instructor: userId });
+      }
+  
+      await User.findByIdAndDelete(userId);
+  
+      res.status(200).json({ success: true, message: "User and related data deleted successfully" });
+    } catch (err) {
+      res.status(500).json({ success: false, message: "Failed to delete user", error: err.message });
+    }
+  };
+  
 

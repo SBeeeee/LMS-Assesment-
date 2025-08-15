@@ -62,7 +62,7 @@ export default function InstructorDashboard() {
           <h1 className="text-3xl font-bold">Instructor Dashboard</h1>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+            className="bg-green-600 hover:cursor-pointer hover:bg-green-700 px-4 py-2 rounded"
           >
             + Create Course
           </button>

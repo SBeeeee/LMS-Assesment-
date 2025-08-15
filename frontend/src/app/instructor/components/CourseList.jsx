@@ -18,7 +18,7 @@ export default function CourseList({ courses, onViewStudents }) {
               <p>Status: <span className="capitalize">{course.status}</span></p>
               <button
                 onClick={() => onViewStudents(course._id)}
-                className="mt-2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded"
+                className="mt-2 bg-blue-600 hover:cursor-pointer hover:bg-blue-700 px-3 py-1 rounded"
               >
                 View Students
               </button>
