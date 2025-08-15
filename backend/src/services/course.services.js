@@ -1,4 +1,5 @@
 import { Course } from "../models/courses.model.js";
+import { Enrollment } from "../models/enrollment.model.js";
 
 export const getAllApprovedCourses = async () => {
   return await Course.find({ status: "Approved" }).populate('instructor', 'name email');
@@ -52,4 +53,19 @@ export const updateCourse = async (courseId, courseData, instructorId) => {
     courseData,
     { new: true }
   ).populate('instructor', 'name email');
+};
+
+
+export const deleteCourse = async (courseId) => {
+
+  const deletedCourse = await Course.findByIdAndDelete(courseId);
+
+  if (!deletedCourse) {
+    return null;
+  }
+
+
+  await Enrollment.deleteMany({ courseId });
+
+  return deletedCourse;
 };

@@ -1,4 +1,4 @@
-import { getAllCourses,getAllApprovedCourses,getCoursesByInstructor,createCourse,updateCourseStatus,updateCourse } from "../services/course.services.js";
+import { getAllCourses,getAllApprovedCourses,getCoursesByInstructor,createCourse,updateCourseStatus,updateCourse,deleteCourse } from "../services/course.services.js";
 
 export const fetchCourses = async (req, res) => {
   try {
@@ -124,3 +124,36 @@ export const updateCourseController = async (req, res) => {
   }
 }
 
+export const deleteCourseController = async (req, res) => {
+  try {
+    const { role } = req.user;
+    const { courseId } = req.params;
+
+    if (role !== "Admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Only admins can delete courses",
+      });
+    }
+
+    const deletedCourse = await deleteCourse(courseId);
+
+    if (!deletedCourse) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Course and related enrollments deleted successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete course",
+      error: err.message,
+    });
+  }
+};
