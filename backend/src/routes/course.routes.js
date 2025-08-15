@@ -8,6 +8,6 @@ router.get('/', authenticateToken, fetchCourses);
 router.post('/', authenticateToken, createNewCourse);
 router.patch('/:courseId/status', authenticateToken, updateCourseStatusController);
 router.put('/:courseId', authenticateToken, updateCourseController);
-router.delete("/:courseId", authMiddleware, deleteCourseController);
+router.delete("/:courseId", authenticateToken, deleteCourseController);
 
 export default router;
